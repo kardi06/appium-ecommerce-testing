@@ -62,15 +62,23 @@ public class eCommerce_tc_3 extends BaseTest{
         double totalSum = 0;
 
         //perulangan , akses setiap isi di List
-        for(int i=1; i < count; i++){
+        for(int i=0; i < count; i++){
 
             String amountString = productPrices.get(i).getText();
 
             //hilangkan tanda $ di depan dan buat jadi type data double
             Double price = Double.parseDouble(amountString.substring(1));
+            //Double price = formattefdAmount(amountString);
 
-            totalSum = totalSum + price;
+            totalSum += price;
         }
+
+        String displaySum = driver.findElement(By.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
+        //String displaySum = driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.androidsample.generalstore:id/totalAmountLbl\"]")).getText();
+        //Double formatSum = formattefdAmount(displaySum);
+        Double formatSum = Double.parseDouble(displaySum.substring(1));
+
+        Assert.assertEquals(totalSum,formatSum);
         Thread.sleep(2000);
     }
 }

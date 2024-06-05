@@ -23,6 +23,12 @@ public class BaseTest {
     public AndroidDriver driver;
     public static final Logger logger = LoggerFactory.getLogger(AppiumBasic.class);
 
+    public Double formattefdAmount(String amount)
+    {
+        Double price = Double.parseDouble(amount.substring(1));
+        return price;
+    }
+
     @BeforeClass
     public void ConfigureAppium()
     {
